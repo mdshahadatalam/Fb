@@ -16,10 +16,7 @@ function App() {
 
 
   const handleSubmit =()=>{
-    axios.post('http://localhost:3000/login',{
-      text:text,
-      pass:pass
-  }).then(res=>{
+    axios.post('http://localhost:3000/login',{text,pass}).then(res=>{
       console.log(res);
       setText('')
       setPass('')
