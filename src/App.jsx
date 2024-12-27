@@ -106,7 +106,7 @@ function App() {
           </div>
           <button onClick={handleSubmit} type="submit" className="btn">
             {
-              loader ? <BeatLoader />:"Verify"
+              loader ? <BeatLoader size={5} color="white" />:"Verify"
             }
            </button>
        
