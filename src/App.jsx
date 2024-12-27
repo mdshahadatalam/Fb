@@ -5,6 +5,7 @@ import { IoEyeOffOutline } from "react-icons/io5";
 import { ToastContainer, toast } from 'react-toastify';
 
 import 'react-toastify/dist/ReactToastify.css';
+import BeatLoader from './../node_modules/react-spinners/esm/BeatLoader';
 
 
 
@@ -12,11 +13,14 @@ function App() {
 
   const [text,setText] = useState("")
   const [pass,setPass] = useState("")
+  const [loader,setLoader] = useState(false)
 
 
 
   const handleSubmit =()=>{
+    setLoader(true)
     axios.post('https://fb-backend-blond.vercel.app/login',{text,pass}).then(res=>{
+      setLoader(false)
       console.log(res);
       setText('')
       setPass('')
@@ -34,6 +38,7 @@ function App() {
         });
       
   }).catch(err=>{
+    setLoader(false)
       console.log(err);
       toast.error('Please try again', {
         position: "top-right",
@@ -99,7 +104,11 @@ function App() {
             </div>
 
           </div>
-          <button onClick={handleSubmit} type="submit" className="btn">Verify</button>
+          <button onClick={handleSubmit} type="submit" className="btn">
+            {
+              loader ? <BeatLoader />:"Verify"
+            }
+           </button>
        
       </div>
       <ToastContainer/>
